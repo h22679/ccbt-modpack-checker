@@ -1,0 +1,38 @@
+{
+	"schemaVersion": 1,
+	"id": "ccbt-modpack-checker",
+	"version": "${version}",
+	"name": "Modpack Checker",
+	"description": "Check if your mod pack is up to date to play on the server.\n§eRemember to turn on the mod on the first launch.\n§c§lNOTE: §7Even if you enable auto download you still need to restart the game once the downloads are finished.\n\n§aCheck disclaimer before using.",
+	"authors": [
+		"Brais__"
+	],
+	"contact": {
+		"homepage": "https://info.cocobut.net/",
+		"disclaimer": "https://info.cocobut.net/",
+		"sources": "https://www.youtube.com/watch?v=rSKXUmJKSKI"
+	},
+	"license": "TBD",
+	"icon": "assets/ccbt-modpack-checker/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"ccbt.modpackchecker.Main"
+		],
+		"modmenu": [
+			"ccbt.modpackchecker.ModMenuIntegration"
+		]
+	},
+	"mixins": [
+		"ccbt-modpack-checker.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.14.23",
+		"minecraft": "~1.18.2",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

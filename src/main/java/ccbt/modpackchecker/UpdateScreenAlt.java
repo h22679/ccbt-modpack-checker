@@ -1,0 +1,92 @@
+package ccbt.modpackchecker;
+
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.OrderedText;
+import net.minecraft.text.Text;
+
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+
+public class UpdateScreenAlt extends Screen {
+
+    ScreenManager screenManager = ScreenManager.getInstance();
+
+    public UpdateScreenAlt() {
+        super(Text.of("Version too high"));
+    }
+
+    @Override
+    protected void init() {
+        super.init();
+        int buttonWidth = 100;
+        int buttonHeight = 20;
+
+        // Calculate the starting X position for the buttons
+        int startX = this.width / 2 - (3 * buttonWidth + 10) / 2; // 10 pixels total padding between buttons
+
+        int y = this.height / 2 - buttonHeight / 2 + 10; // Common Y coordinate for all buttons
+
+        // Open URL Button
+        this.addDrawableChild(new ButtonWidget(
+                startX, y, buttonWidth, buttonHeight,
+                Text.of("Open URL"),
+                button -> {
+                    try {
+                        Desktop.getDesktop().browse(new URI("https://info.cocobut.net/"));
+                    } catch (IOException | URISyntaxException e) {
+                        e.printStackTrace();
+                    }
+                }
+        ));
+
+        // Close Screen Button
+        this.addDrawableChild(new ButtonWidget(
+                startX + buttonWidth + 5, y, buttonWidth, buttonHeight, // Adjust X position for layout
+                Text.of("Close"),
+                button -> {
+                    closeAndOpenNextScreen(screenManager, null);
+                }));
+
+        // Copy URL Button
+        this.addDrawableChild(new ButtonWidget(
+                startX + 2 * (buttonWidth + 5), y, buttonWidth, buttonHeight, // Adjust X position for layout
+                Text.of("Copy URL"),
+                button -> {
+                    StringSelection selection = new StringSelection("https://info.cocobut.net/");
+                    Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+                    clipboard.setContents(selection, selection);
+                }
+        ));
+    }
+
+    private void closeAndOpenNextScreen(ScreenManager screenManager, Screen nextScreen) {
+        screenManager.closeScreen(); // This will close the current screen
+        if (nextScreen != null) {
+            screenManager.openScreen(nextScreen); // Open the next screen if it's not null
+        }
+    }
+
+    @Override
+    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+        this.renderBackground(matrices); // Render the background
+        super.render(matrices, mouseX, mouseY, delta); // Ensure any buttons or other elements are rendered
+
+        Text line1 = new LiteralText("Your \"Mod pack checker\" version is higher than expected");
+        Text line2 = new LiteralText("Are you from the future?");
+
+        // Convert Text to OrderedText
+        OrderedText orderedText1 = line1.asOrderedText();
+        OrderedText orderedText2 = line2.asOrderedText();
+
+        // Render the centered text
+        drawCenteredTextWithShadow(matrices, textRenderer, orderedText1, width / 2, height / 2 - 60, 0xFFFFFF);
+        drawCenteredTextWithShadow(matrices, textRenderer, orderedText2, width / 2, height / 2 - 40, 0xFFFFFF);
+    }
+}

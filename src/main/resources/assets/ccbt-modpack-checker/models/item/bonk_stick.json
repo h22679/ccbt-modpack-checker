@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "ccbt-modpack-checker:item/bonk_stick"
+  }
+}

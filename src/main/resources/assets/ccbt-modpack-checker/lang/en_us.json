@@ -1,0 +1,32 @@
+{
+  "_comment": "General config texts",
+  "config.title": "Mod Pack Checker - Settings",
+  "configCategory.general": "General Settings",
+  "configCategory.technical": "Technical Settings",
+
+  "_comment": "Setting names",
+  "config.turnOn": "Turn on the mod",
+  "config.warnExtraFiles": "Warn mod updates",
+  "config.notifyUpdate": "Mod update notifications",
+  "config.showNews": "Show news screen",
+  "config.autoDownload": "Automatically download missing mods",
+  "config.customModFolder": "Custom mod folder",
+  "config.useCustomModFolder": "Use custom mod folder",
+  "config.apiDownloadURL": "API download URL",
+  "config.apiListURL": "API list URL",
+  "config.apiNewsURL": "API news URL",
+
+  "_comment": "Tooltip Texts",
+  "tooltip.config.warning": "§c§lWARNING: §fDo not change unless you know what you're doing",
+  "tooltip.config.turnOn.line1": "By enabling this setting you acknowledge",
+  "tooltip.config.turnOn.line2": "and agree to the terms stated in:",
+  "tooltip.config.showNews.line1": "Toggle news screen",
+  "tooltip.config.turnOn.line3": "https://info.cocobut.net/",
+  "tooltip.config.autoDownload.line1": "Enable downloading files automatically",
+  "tooltip.config.notifyUpdate.line1": "Get notified when an update for Mod Pack Checker is available",
+  "tooltip.config.customModFolder.line1": "Define path to custom mod folder.",
+  "tooltip.config.apiDownloadURL.line1": "The URL the mod should use to download files",
+  "tooltip.config.apiListURL.line1": "The URL the mod should use to get the list of mods",
+  "tooltip.config.apiNewsURL.line1": "The URL the mod should use to get news and updates on the mod pack",
+  "tooltip.config.useCustomModFolder.line1": "Only use this setting when the mod is not locating the folder correctly"
+}
