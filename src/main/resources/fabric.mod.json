@@ -12,7 +12,7 @@
 		"disclaimer": "https://info.cocobut.net/",
 		"sources": "https://www.youtube.com/watch?v=rSKXUmJKSKI"
 	},
-	"license": "TBD",
+	"license": "CC BY-NC-SA 4.0",
 	"icon": "assets/ccbt-modpack-checker/icon.png",
 	"environment": "*",
 	"entrypoints": {
