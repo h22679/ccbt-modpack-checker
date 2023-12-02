@@ -30,20 +30,4 @@ public class ModFileComparator {
 
         return fileDifferences;
     }
-
-    // Main method for testing purposes
-    public static void main(String[] args) {
-        ModFileComparator comparator = new ModFileComparator();
-
-        // Example lists for demonstration, not in use as the mod communicates with api for this
-        List<String> currentMods = List.of("mod1.jar", "mod2.jar", "mod3.jar");
-        List<String> expectedMods = List.of("mod1.jar", "mod2.jar", "mod4.jar", "mod5.jar");
-
-        // Compare the lists and get the results
-        Map<String, List<String>> differences = comparator.compareModFiles(currentMods, expectedMods);
-
-        // Output the differences
-        System.out.println("Missing Files: " + differences.get("missingFiles"));
-        System.out.println("Extra Files: " + differences.get("extraFiles"));
-    }
 }

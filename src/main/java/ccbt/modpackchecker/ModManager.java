@@ -95,29 +95,6 @@ public class ModManager {
         }
     }
 
-
-    // Main method for testing purposes, not for use, urls are wrong
-    public static void main(String[] args) {
-        ModManager modManager = new ModManager("path/to/minecraft/mods");
-
-        try {
-            // List the current mod files
-            List<String> currentMods = modManager.listModFiles();
-            System.out.println("Current Mods: " + currentMods);
-
-            // Fetch the expected mod files from the API and print them
-            List<String> expectedMods = modManager.fetchExpectedModFiles("http://api.example.com/modlist");
-            System.out.println("Expected Mods: " + expectedMods);
-
-            // Fetch news and updates
-            String updateMessage = modManager.fetchNews("http://api.example.com/modpack-checker?action=getnews");
-            System.out.println("Update Message: " + updateMessage);
-
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
     /**
      * Downloads missing mod files to a specified directory.
      *

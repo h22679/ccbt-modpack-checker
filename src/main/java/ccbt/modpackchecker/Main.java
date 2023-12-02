@@ -110,7 +110,7 @@ public class Main implements ModInitializer {
 	private void checkForUpdates(ModManager modManager) {
 		try {
 			// Fetch the update message from the API
-			String updateMessage = modManager.fetchUpdate("https://api.cocobut.net/modpack-checker?action=checkupdates&client_version=0.3.2");
+			String updateMessage = modManager.fetchUpdate("https://api.cocobut.net/modpack-checker?action=checkupdates&client_version=0.3.3");
 
 			LOGGER.info("Update Message: " + updateMessage);
 
