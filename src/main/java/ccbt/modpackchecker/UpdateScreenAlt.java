@@ -1,11 +1,13 @@
 package ccbt.modpackchecker;
 
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
+import net.minecraft.util.Util;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
@@ -38,11 +40,7 @@ public class UpdateScreenAlt extends Screen {
                 startX, y, buttonWidth, buttonHeight,
                 Text.of("Open URL"),
                 button -> {
-                    try {
-                        Desktop.getDesktop().browse(new URI("https://github.com/h22679/ccbt-modpack-checker"));
-                    } catch (IOException | URISyntaxException e) {
-                        e.printStackTrace();
-                    }
+                    Util.getOperatingSystem().open("https://github.com/h22679/ccbt-modpack-checker");
                 }
         ));
 
@@ -59,9 +57,7 @@ public class UpdateScreenAlt extends Screen {
                 startX + 2 * (buttonWidth + 5), y, buttonWidth, buttonHeight, // Adjust X position for layout
                 Text.of("Copy URL"),
                 button -> {
-                    StringSelection selection = new StringSelection("https://github.com/h22679/ccbt-modpack-checker");
-                    Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-                    clipboard.setContents(selection, selection);
+                    MinecraftClient.getInstance().keyboard.setClipboard("https://github.com/h22679/ccbt-modpack-checker");
                 }
         ));
     }
