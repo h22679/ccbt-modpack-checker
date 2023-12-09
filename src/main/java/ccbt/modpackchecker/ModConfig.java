@@ -6,34 +6,55 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import net.fabricmc.loader.api.FabricLoader;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 public class ModConfig {
     private static final String CONFIG_FILENAME = "config/modpackchecker.json";
     private static final File configFile = new File(CONFIG_FILENAME);
+    private static final String DEFAULT_CONFIG_RESOURCE_PATH = "/default_config.json";
 
-    private static boolean turnOn = false;
-    private static boolean autoDownload = false;
 
-    private static boolean notifyUpdate = true;
+    // Default variables
+    private static boolean turnOn;
+    private static boolean autoDownload;
+    private static boolean notifyUpdate;
+    private static boolean showNews;
+    private static String APIDownloadUrl;
+    private static String APIListUrl;
+    private static String APINewsUrl;
+    private static boolean useCustomFolder;
+    private static String customModFolder;
 
-    private static boolean showNews = true;
-
-    private static String APIDownloadUrl = "https://api.cocobut.net/download/";
-
-    private static String APIListUrl = "https://api.cocobut.net/modpack-checker?action=listfiles";
-
-    private static String APINewsUrl = "https://api.cocobut.net/modpack-checker?action=getnews";
-
-    private static boolean useCustomFolder = false;
-
-    private static String customModFolder = "";
+    static {
+        loadDefaultConfig(); // Load default configuration when the class is loaded
+    }
 
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
+    // Load the default configuration from the internal resource file
+    private static void loadDefaultConfig() {
+        try (InputStream inputStream = ModConfig.class.getResourceAsStream(DEFAULT_CONFIG_RESOURCE_PATH);
+             Reader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
+            JsonObject defaultConfig = JsonParser.parseReader(reader).getAsJsonObject();
+            // Set all default values
+            turnOn = defaultConfig.get("turnOn").getAsBoolean();
+            autoDownload = defaultConfig.get("autoDownload").getAsBoolean();
+            notifyUpdate = defaultConfig.get("notifyUpdate").getAsBoolean();
+            showNews = defaultConfig.get("showNews").getAsBoolean();
+            APIDownloadUrl = defaultConfig.get("APIDownloadUrl").getAsString();
+            APIListUrl = defaultConfig.get("APIListUrl").getAsString();
+            APINewsUrl = defaultConfig.get("APINewsUrl").getAsString();
+            useCustomFolder = defaultConfig.get("useCustomFolder").getAsBoolean();
+            customModFolder = defaultConfig.get("customModFolder").getAsString();
+        } catch (IOException e) {
+            // Handle exception related to reading the default config
+            System.err.println("An error occurred while loading the default config: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    //Getters and setters
     public static boolean getTurnOn() {
         return turnOn;
     }

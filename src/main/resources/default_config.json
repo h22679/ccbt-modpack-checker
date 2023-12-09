@@ -1,0 +1,11 @@
+{
+  "turnOn": false,
+  "autoDownload": false,
+  "notifyUpdate": true,
+  "showNews": true,
+  "APIDownloadUrl": "https://api.amalgam.cc/download/",
+  "APIListUrl": "https://api.amalgam.cc/modpack-checker?action=listfiles",
+  "APINewsUrl": "https://api.amalgam.cc/modpack-checker?action=getnews",
+  "useCustomFolder": false,
+  "customModFolder": ""
+}

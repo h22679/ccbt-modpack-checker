@@ -24,7 +24,7 @@ public class ModConfigScreen {
         // Boolean fields
         BooleanListEntry turnOnEntry = builder.entryBuilder()
                 .startBooleanToggle(new TranslatableText("config.turnOn"), ModConfig.getTurnOn())
-                .setDefaultValue(false)
+                .setDefaultValue(ModConfig.getTurnOn()) // Use the default from ModConfig
                 .setSaveConsumer(ModConfig::setTurnOn) // Use a method reference to save the value
                 .setTooltip(
                         new TranslatableText("tooltip.config.turnOn.line1"),
@@ -35,7 +35,7 @@ public class ModConfigScreen {
 
         BooleanListEntry autoDownloadEntry = builder.entryBuilder()
                 .startBooleanToggle(new TranslatableText("config.autoDownload"), ModConfig.getAutoDownload())
-                .setDefaultValue(false)
+                .setDefaultValue(ModConfig.getAutoDownload()) // Use the default from ModConfig
                 .setSaveConsumer(ModConfig::setAutoDownload) // Use a method reference to save the value
                 .setTooltip(
                         new TranslatableText("tooltip.config.autoDownload.line1")
@@ -44,7 +44,7 @@ public class ModConfigScreen {
 
         BooleanListEntry notifyUpdateEntry = builder.entryBuilder()
                 .startBooleanToggle(new TranslatableText("config.notifyUpdate"), ModConfig.getNotifyUpdate())
-                .setDefaultValue(false)
+                .setDefaultValue(ModConfig.getNotifyUpdate()) // Use the default from ModConfig
                 .setSaveConsumer(ModConfig::setNotifyUpdate) // Use a method reference to save the value
                 .setTooltip(
                         new TranslatableText("tooltip.config.notifyUpdate.line1")
@@ -53,16 +53,16 @@ public class ModConfigScreen {
 
         BooleanListEntry showNewsEntry = builder.entryBuilder()
                 .startBooleanToggle(new TranslatableText("config.showNews"), ModConfig.getShowNews())
-                .setDefaultValue(false)
+                .setDefaultValue(ModConfig.getShowNews()) // Use the default from ModConfig
                 .setSaveConsumer(ModConfig::setShowNews) // Use a method reference to save the value
                 .setTooltip(
                         new TranslatableText("tooltip.config.showNews.line1")
                 )
                 .build();
 
-        BooleanListEntry useCustomModFolder = builder.entryBuilder()
+        BooleanListEntry useCustomModFolderEntry = builder.entryBuilder()
                 .startBooleanToggle(new TranslatableText("config.useCustomModFolder"), ModConfig.getUseCustomFolder())
-                .setDefaultValue(false)
+                .setDefaultValue(ModConfig.getUseCustomFolder()) // Use the default from ModConfig
                 .setSaveConsumer(ModConfig::setUseCustomFolder) // Use a method reference to save the value
                 .setTooltip(
                         new TranslatableText("tooltip.config.useCustomModFolder.line1"),
@@ -70,56 +70,57 @@ public class ModConfigScreen {
                 )
                 .build();
 
-        //String fields
-
-        StringListEntry apiDownloadURL = builder.entryBuilder()
+        // String fields
+        StringListEntry apiDownloadURLEntry = builder.entryBuilder()
                 .startStrField(new TranslatableText("config.apiDownloadURL"), ModConfig.getAPIDownloadUrl())
-                .setDefaultValue("https://api.cocobut.net/download/")
-                .setSaveConsumer(ModConfig::setAPIDownloadUrl)
+                .setDefaultValue(ModConfig.getAPIDownloadUrl()) // Use the default from ModConfig
+                .setSaveConsumer(ModConfig::setAPIDownloadUrl) // Use a method reference to save the value
                 .setTooltip(
                         new TranslatableText("tooltip.config.apiDownloadURL.line1"),
                         new TranslatableText("tooltip.config.warning")
                 )
                 .build();
 
-        StringListEntry apiListURL = builder.entryBuilder()
-                .startStrField(new TranslatableText("config.apiListURL"), ModConfig.getAPIDownloadUrl())
-                .setDefaultValue("https://api.cocobut.net/modpack-checker?action=listfiles")
-                .setSaveConsumer(ModConfig::setAPIDownloadUrl)
+        StringListEntry apiListURLEntry = builder.entryBuilder()
+                .startStrField(new TranslatableText("config.apiListURL"), ModConfig.getApiListUrl())
+                .setDefaultValue(ModConfig.getApiListUrl()) // Use the default from ModConfig
+                .setSaveConsumer(ModConfig::setApiListUrl) // Use a method reference to save the value
                 .setTooltip(
                         new TranslatableText("tooltip.config.apiListURL.line1"),
                         new TranslatableText("tooltip.config.warning")
                 )
                 .build();
 
-        StringListEntry apiNewsURL = builder.entryBuilder()
-                .startStrField(new TranslatableText("config.apiNewsURL"), ModConfig.getAPIDownloadUrl())
-                .setDefaultValue("https://api.cocobut.net/modpack-checker?action=getnews")
-                .setSaveConsumer(ModConfig::setAPIDownloadUrl)
+        StringListEntry apiNewsURLEntry = builder.entryBuilder()
+                .startStrField(new TranslatableText("config.apiNewsURL"), ModConfig.getApiNewsUrl())
+                .setDefaultValue(ModConfig.getApiNewsUrl()) // Use the default from ModConfig
+                .setSaveConsumer(ModConfig::setApiNewsUrl) // Use a method reference to save the value
                 .setTooltip(
                         new TranslatableText("tooltip.config.apiNewsURL.line1"),
                         new TranslatableText("tooltip.config.warning")
                 )
                 .build();
 
-        StringListEntry customModFolder = builder.entryBuilder()
+        StringListEntry customModFolderEntry = builder.entryBuilder()
                 .startStrField(new TranslatableText("config.customModFolder"), ModConfig.getCustomModFolder())
-                .setDefaultValue("")
-                .setSaveConsumer(ModConfig::setCustomModFolder)
+                .setDefaultValue(ModConfig.getCustomModFolder()) // Use the default from ModConfig
+                .setSaveConsumer(ModConfig::setCustomModFolder) // Use a method reference to save the value
                 .setTooltip(
                         new TranslatableText("tooltip.config.customModFolder.line1"),
                         new TranslatableText("tooltip.config.warning")
                 )
                 .build();
 
+        // Add entries to categories
         general.addEntry(turnOnEntry);
         general.addEntry(autoDownloadEntry);
         general.addEntry(notifyUpdateEntry);
         general.addEntry(showNewsEntry);
-        technical.addEntry(customModFolder);
-        technical.addEntry(useCustomModFolder);
-        technical.addEntry(apiListURL);
-        technical.addEntry(apiDownloadURL);
+        technical.addEntry(useCustomModFolderEntry);
+        technical.addEntry(apiListURLEntry);
+        technical.addEntry(apiDownloadURLEntry);
+        technical.addEntry(apiNewsURLEntry);
+        technical.addEntry(customModFolderEntry);
 
         return builder.build();
     }
